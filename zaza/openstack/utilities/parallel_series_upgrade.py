@@ -516,7 +516,7 @@ async def maybe_pause_things(
                     if _app in SUBORDINATE_PAUSE_RESUME_BLACKLIST:
                         logging.info("Skipping pausing {} - blacklisted"
                                      .format(subordinate))
-                    elif not "pause" in model.get_actions(application_name):
+                    elif "pause" not in model.get_actions(_app):
                         logging.info("Skipping pausing {} - no pause action"
                                      .format(subordinate))
                     else:

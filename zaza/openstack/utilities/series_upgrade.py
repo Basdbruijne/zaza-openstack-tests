@@ -689,6 +689,10 @@ async def async_series_upgrade(unit_name, machine_num,
     :returns: None
     :rtype: None
     """
+    if model.get_unit_from_name(unit_name).machine.series == to_series:
+        logging.info("Skipping series upgrade {} - already upgraded"
+                     .format(unit_name))
+        return
     logging.info("Series upgrade {}".format(unit_name))
     application = unit_name.split('/')[0]
     await os_utils.async_set_dpkg_non_interactive_on_unit(unit_name)
