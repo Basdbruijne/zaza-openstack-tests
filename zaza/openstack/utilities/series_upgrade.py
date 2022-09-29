@@ -172,8 +172,12 @@ def series_upgrade_non_leaders_first(
                                      .format(subordinate))
                     else:
                         logging.info("Pausing {}".format(subordinate))
-                        model.run_action(
-                            subordinate, "pause", action_params={})
+                        try:
+                            model.run_action(
+                                subordinate, "pause", action_params={})
+                        except ValueError:
+                            logging.info(
+                                "{} has not pause action".format(subordinate))
         if pause_non_leader_primary:
             logging.info("Pausing {}".format(unit))
             model.run_action(unit, "pause", action_params={})
@@ -381,8 +385,12 @@ def series_upgrade_application(application, pause_non_leader_primary=True,
                                      .format(subordinate))
                     else:
                         logging.info("Pausing {}".format(subordinate))
-                        model.run_action(
-                            subordinate, "pause", action_params={})
+                        try:
+                            model.run_action(
+                                subordinate, "pause", action_params={})
+                        except ValueError:
+                            logging.info(
+                                "{} has not pause action".format(subordinate))
         if pause_non_leader_primary:
             logging.info("Pausing {}".format(unit))
             model.run_action(unit, "pause", action_params={})
