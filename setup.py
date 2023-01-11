@@ -130,4 +130,5 @@ setup(
         'testing': tests_require,
     },
     tests_require=tests_require,
+    pbr=True,
 )
